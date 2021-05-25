@@ -1,3 +1,10 @@
+<?php
+$error = "";
+$fileProducts = fopen("data/products.csv", "r");
+$fileStores = fopen("data/stores.csv", "r");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en-VN">
 
@@ -75,10 +82,10 @@
             <nav class="alt-menu">
                 <div class="side-nav">
                     <div style="display: block; float: left; margin-left: 15px; margin-top: 25px;">
-                            <a href="Checkout.php" style="text-decoration: none;">
-                                <i class="fas fa-shopping-cart" style="color: white;"></i>
-                                <span id="cart-quantity" style="color: white;">0</span>
-                            </a>
+                        <a href="Checkout.php" style="text-decoration: none;">
+                            <i class="fas fa-shopping-cart" style="color: white;"></i>
+                            <span id="cart-quantity" style="color: white;">0</span>
+                        </a>
                     </div>
                     <input type="checkbox" id="check">
                     <label for="check" class="menu-icon">
@@ -156,132 +163,38 @@
                 <h1>featured products</h1>
             </div>
             <div class="featured-products">
-                <div class="store">
-                    <img class="brand" src="images/ip-12-pro-max.jpg">
-                    <div class="overlay">
-                        <a>Iphone 12 Pro Max</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/leicester-kit.jpg">
-                    <div class="overlay">
-                        <a>Leicester Home Kit</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/speed-3.0.jpg">
-                    <div class="overlay">
-                        <a>Speed 3.0 Sneakers</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/LA-jersey.jpg">
-                    <div class="overlay">
-                        <a>LA Lakers Jersey</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/hublot-watch.jpg">
-                    <div class="overlay">
-                        <a>Big Bang Meca-10</a>
-                    </div>
-                </div>
+                <?php while (list($id, $name) = fgetcsv($fileProducts, 1024, ',')) {
+                    if ($id < 6 && $id > 0) {
+                ?>
+                        <div class="store">
+                            <img class="brand" src="images/ip-12-pro-max.jpg">
+                            <div class="overlay">
+                                <a><?php echo $name; ?></a>
+                            </div>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
             </div>
             <div class="new">
                 <h1>new stores</h1>
             </div>
             <div class="slide-container">
                 <div class="new-stores" id="slider1">
-                    <div class="slide-store1">
-                        <img class="brand" src="images/microsoft.jpg">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1">
-                        <img class="brand" src="images/rolex.png">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1">
-                        <img class="brand" src="images/LV.png">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1">
-                        <img class="brand" src="images/lego.jpeg">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1">
-                        <img class="brand" src="images/locknlock.png">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1">
-                        <img class="brand" src="images/adidas.png">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1">
-                        <img class="brand" src="images/shakeshack.jpg">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1">
-                        <img class="brand" src="images/starbucks.jpg">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1">
-                        <img class="brand" src="images/nike.jpg">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1">
-                        <img class="brand" src="images/din-tai-fung.png">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1" id="duplicate-1">
-                        <img class="brand" src="images/microsoft.jpg">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1" id="duplicate-2">
-                        <img class="brand" src="images/rolex.png">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1" id="duplicate-3">
-                        <img class="brand" src="images/LV.png">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1" id="duplicate-4">
-                        <img class="brand" src="images/lego.jpeg">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
-                    <div class="slide-store1" id="duplicate-5">
-                        <img class="brand" src="images/locknlock.png">
-                        <div class="overlay">
-                            <a href="Apple.php">Visit now!</a>
-                        </div>
-                    </div>
+                    <?php while (list($id, $name) = fgetcsv($fileStores, 1024, ',')) {
+                        if ($id < 15 && $id > 0) {
+                    ?>
+                            <div class="slide-store1">
+                                <img class="brand" src="images/microsoft.jpg">
+                                <div class="overlay">
+                                    <a href="Apple.php"><?php echo $name?></a>
+                                </div>
+                            </div>
+                    <?php
+                        }
+                    }
+                    ?>
                     <div class="placeholder">Text</div>
                 </div>
             </div>
@@ -405,14 +318,10 @@
                         <p class="address" id="detail-2"><i class="fas fa-phone-alt"></i>(028)-2288-9999</p>
                     </div>
                     <ul class="icon-container">
-                        <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"
-                                    aria-hidden="true"></i></a></li>
-                        <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"
-                                    aria-hidden="true"></i></a></li>
-                        <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"
-                                    aria-hidden="true"></i></a></li>
-                        <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"
-                                    aria-hidden="true"></i></a></li>
+                        <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
                 <!--GItem 3-->
@@ -427,8 +336,7 @@
         <div id="cookies-box" class="cookies-pop-up">
             <div class="cookies-content">
                 <h2>We are using cookies for our website</h2>
-                <p>Cookies are used to improve your browsing experience. By using the site you agree to the <a
-                        href="Terms.php">Terms and Conditions</a>.</p>
+                <p>Cookies are used to improve your browsing experience. By using the site you agree to the <a href="Terms.php">Terms and Conditions</a>.</p>
                 <div class="buttons">
                     <button class="item" id="accept">I Accept</button>
                     <button class="item" id="decline">No, thanks!</button>
@@ -440,11 +348,11 @@
     </div>
     <!--Cookies-wrap-->
 </body>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="libs/toastr/build/toastr.min.js"></script>
-    <script src="index.js"></script>
-    <script src="cookies.js"></script>
-    <script src="status.js"></script>
-    <script src="cart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="libs/toastr/build/toastr.min.js"></script>
+<script src="index.js"></script>
+<script src="cookies.js"></script>
+<script src="status.js"></script>
+<script src="cart.js"></script>
 
 </html>

@@ -26,6 +26,9 @@ if (isset($_POST['register'])) {
         $city = clean_text($_POST['city']);
         $zipcode = clean_text($_POST['zip']);
         $country = clean_text($_POST['country']);
+        $business = clean_text($_POST['business']);
+        $store = clean_text($_POST['store']);
+        $category = clean_text($_POST['category']);
       }
     }
   }
@@ -45,7 +48,10 @@ if (isset($_POST['register'])) {
       'address' => $address,
       'city' => $city,
       'zipcode' => $zipcode,
-      'country' => $country
+      'country' => $country,
+      'businessname' => $business,
+      'storename' => $store,
+      'storecategory' => $category
     );
     fputcsv($file_open, $form_data);
     header("Location: Login.php");
@@ -490,7 +496,7 @@ if (isset($_POST['register'])) {
                 <div class="input-box">
                   <label for="detail">Store Category</label>
                   <select id="category" name="category">
-                    <option>Select Category</option>
+                    <option hidden>Select Category</option>
                     <option value="department">Department Store</option>
                     <option value="grocery">Grocery Store</option>
                     <option value="restaurants">Restaurant</option>

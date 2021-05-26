@@ -1,16 +1,91 @@
 <?php
+$fileProducts = fopen("data/products.csv", "r");
+$filePath = "data/products.csv";
 $fp = file("data/products.csv");
 $countCSV =  count($fp);
-$fileProducts = fopen("data/products.csv", "r");
-$fileStores = fopen("data/stores.csv", "r");
+// while(list($id,$name,$price,$time) = fgetcsv($fileProducts)){
+//     // print_r($time);
+//     if($id > 0){
+//         echo $id;
+//         echo $name;
+//         echo $price;
+//         echo strtotime($time) . ", ";
+//     }
+// }
+// $format = "%Y-%m-%d %H:%M:%SZ";
+// echo $strTime = strftime($format, mktime(2018,11,10,7,52,14));
+// echo  "<br />";
+// echo "Timestamp:" . strtotime($strTime);
+// function readCSV($file)
+// {
+//   $row      = 0;
+//   $csvArray = array();
+//   if( ( $handle = fopen($file, "r") ) !== FALSE ) {
+//     while( ( $data = fgetcsv($handle, 0, ";") ) !== FALSE ) {
+//       $num = count($data);
+//       for( $c = 0; $c < $num; $c++ ) {
+//         $csvArray[$row][] = $data[$c];
+//       }
+//       $row++;
+//     }
+//   }
+//   if( !empty( $csvArray ) ) {
+//     return array_splice($csvArray, 1); //cut off the first row (names of the fields)
+//   } else {
+//     return false;
+//   }
+// }
+
+// $csvData = readCSV($filePath);
+
+// var_dump($csvData);
+
+// $result = array_column(array_map('str_getcsv', file('data/products.csv')), 3, 0);
+// print_r($result);
+function csv_to_array($filename='', $delimiter=',')
+{
+    if(!file_exists($filename) || !is_readable($filename))
+        return FALSE;
+
+    $header = NULL;
+    $data = array();
+    if (($handle = fopen($filename, 'r')) !== FALSE)
+    {
+        while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE)
+        {
+            if(!$header)
+                $header = $row;
+            else
+                $data[] = array_combine($header, $row);
+        }
+        fclose($handle);
+    }
+    return $data;
+}
+$csvData = csv_to_array($filePath);
+// print_r($csvData);
+// for($i=0;$i<10;$i++){
+//     echo strtotime($csvData[$i]['created_time']) . " , ";
+// }
+function date_compare($element1, $element2) {
+    $datetime1 = strtotime($element1['created_time']);
+    $datetime2 = strtotime($element2['created_time']);
+    return $datetime1 - $datetime2;
+} 
+  
+// Sort the array 
+usort($csvData, 'date_compare');
+// Print the array
+// for($i = 0; $i < 10; $i ++){
+//     echo $csvData[$i]['name'];
+// }
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en-VN">
 
 <head>
-    <title>Home | Infinis Mall | The biggest shopping center in Vietnam</title>
+    <title>Browse by Categories | Infinis Mall | The biggest shopping center in Vietnam</title>
     <meta charset="UTF-8">
     <meta name="authors" content="Group 8">
     <meta name="description" content="shopping mall">
@@ -19,8 +94,9 @@ $fileStores = fopen("data/stores.csv", "r");
     <meta property="og:type" content="#">
     <meta property="og:url" content="#">
     <meta property="og:image" content="#">
+    <meta property="og:title" content="#">
     <meta property="og:description" content="#">
-    <link rel="stylesheet" type="text/css" href="index.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="CreatedTime.css" media="screen">
     <script src="https://kit.fontawesome.com/5143a5dc4e.js" crossorigin="anonymous"></script>
     <link href="libs/toastr/build/toastr.min.css" rel="stylesheet" />
 </head>
@@ -41,7 +117,7 @@ $fileStores = fopen("data/stores.csv", "r");
             </div>
             <!--Top Header-->
             <nav class="main-menu">
-                <a href="index.php" class="active">
+                <a href="index.php">
                     <i class="fas fa-home"></i>
                 </a>
                 <div class="dropdown">
@@ -49,7 +125,7 @@ $fileStores = fopen("data/stores.csv", "r");
                     <div class="dropdown-content" id="special">
                         <a href="Brands.php">Brands</a>
                         <a href="Categories.php">Categories</a>
-                        <a href="CreatedTime.php">Created time</a>
+                        <a class="active" href="Categories.php">Created Time</a>
                     </div>
                     <!--Shops By (Dropdown)-->
                 </div>
@@ -95,12 +171,12 @@ $fileStores = fopen("data/stores.csv", "r");
                     </label>
                     <div class="sub-menu">
                         <a class="empty">Empty</a>
-                        <a class="active" href="index.php">Home</a>
+                        <a href="index.php">Home</a>
                         <div class="drop">
-                            <a href="javascript:void(0)">Browse By</a>
+                            <a href="javascript:void(0)" class="active">Browse By</a>
                             <div class="items">
                                 <a href="Brands.php">Brands</a>
-                                <a href="Categories.php">Categories</a>
+                                <a href="Categories.php" class="active">Categories</a>
                             </div>
                         </div>
                         <a href="Fees.php">Fees</a>
@@ -123,108 +199,43 @@ $fileStores = fopen("data/stores.csv", "r");
                     </div>
                 </div>
             </nav>
-
         </header>
+
+
+        <!-- End HEADER -->
+
+
+        <!-- Start Main -->
+
         <div class="main">
             <div class="featured">
-                <h1>featured stores</h1>
+                <h1>Browse Products by Created Time</h1>
             </div>
-            <div class="featured-stores">
-                <div class="store">
-                    <img class="brand" src="images/apple.png">
-                    <div class="overlay">
-                        <a href="Apple.php">Visit now!</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/leicester.jpg">
-                    <div class="overlay">
-                        <a href="Apple.php">Visit now!</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/balenciaga.jpg">
-                    <div class="overlay">
-                        <a href="Apple.php">Visit now!</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/NBA.jpg">
-                    <div class="overlay">
-                        <a href="Apple.php">Visit now!</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/hublot.jpeg">
-                    <div class="overlay">
-                        <a href="Apple.php">Visit now!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="featured">
-                <h1>featured products</h1>
-            </div>
-            <div class="featured-products">
-                <?php while (list($id, $name) = fgetcsv($fileProducts, 1024, ',')) {
-                    if ($id < 6 && $id > 0) {
+            <div class="list-wrapper">
+                <?php for($i = 0; $i < 10; $i ++):
                 ?>
-                        <div class="store">
-                            <img class="brand" src="images/ip-12-pro-max.jpg">
-                            <div class="overlay">
-                                <a><?php echo $name; ?></a>
-                            </div>
-                        </div>
-                <?php
-                    }
-                }
-                ?>
-            </div>
-            <div class="new">
-                <h1>new stores</h1>
-            </div>
-            <div class="slide-container">
-                <div class="new-stores" id="slider1">
-                    <?php while (list($id, $name) = fgetcsv($fileStores, 1024, ',')) {
-                        if ($id < 15 && $id > 0) {
-                    ?>
-                            <div class="slide-store1">
-                                <img class="brand" src="images/microsoft.jpg">
-                                <div class="overlay">
-                                    <a href="Apple.php"><?php echo $name ?></a>
-                                </div>
-                            </div>
-                    <?php
-                        }
-                    }
-                    ?>
-                    <div class="placeholder">Text</div>
-                </div>
-            </div>
-            <div class="new">
-                <h1>new products</h1>
-            </div>
-            <div class="slide-container">
-                <div class="new-products" >
-                    <?php if (($handle = fopen("data/products.csv", "r")) !== FALSE) {
-                        while ((list($id, $name) = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                            if ($id > ($countCSV - 6)) {
-                    ?>
-                                <div class="slide-store2">
-                                    <img class="brand" src="images/xbox.jpg">
-                                    <div class="overlay">
-                                        <a><?php echo $name ?></a>
+                            <div class="list-item">
+                                <div class="content">
+                                    <img class="brand" src="images/apple.png">
+                                    <div class="text">
+                                        <p><?php echo $csvData[$i]['name']; ?></p>
+                                    </div>
+                                    <div class="text">
+                                        <p><?php echo $csvData[$i]['created_time']; ?></p>
                                     </div>
                                 </div>
-                    <?php
-                            }
-                        }
-                        fclose($handle);
-                    }
-                    ?>
-                    <div class="placeholder">Text</div>
-                </div>
+                            </div>
+                <?php
+                    endfor;
+                ?>
             </div>
+            <div id="pagination-container"></div>
         </div>
+
+        <!-- END MAIN -->
+
+
+        <!-- START FOOTER -->
         <footer>
             <div class="grid-contain">
                 <div class="grid-item-1">
@@ -259,7 +270,6 @@ $fileStores = fopen("data/stores.csv", "r");
             </div>
         </footer>
     </div>
-    <!--Container-->
     <div id="cookies-bg" class="cookies-wrap">
         <div id="cookies-box" class="cookies-pop-up">
             <div class="cookies-content">
@@ -278,9 +288,29 @@ $fileStores = fopen("data/stores.csv", "r");
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="libs/toastr/build/toastr.min.js"></script>
-<script src="index.js"></script>
 <script src="cookies.js"></script>
 <script src="status.js"></script>
 <script src="cart.js"></script>
+<script src="Createdtime.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.min.js"></script>
+<script>
+    var items = $('.list-wrapper .list-item');
+    var numItems = items.length;
+    var perPage = 2;
+
+    items.slice(perPage).hide();
+    $('#pagination-container').pagination({
+        items: numItems,
+        itemsOnPage: perPage,
+        prevText: "<",
+        nextText: ">",
+        onPageClick: function(pageNumber) {
+            var showFrom = perPage * (pageNumber - 1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom, showTo).show();
+        }
+    })
+</script>
 
 </html>

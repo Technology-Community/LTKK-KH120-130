@@ -4,3 +4,4 @@ id,email,phone,password,firstname,lastname,address,city,zipcode,country,business
 3,test@gmail.com,0329051143,3a6bf0019999e7eb6102d6dd15f92cff,sss,sss,"Hà Nội","Nam Định",123456,VN
 4,test1@gmail.com,0329051143,3a6bf0019999e7eb6102d6dd15f92cff,sss,sss,"Hà Nội","Nam Định",123456,VN,,,"Select Category"
 5,test2@gmail.com,0329051143,3a6bf0019999e7eb6102d6dd15f92cff,sss,sss,"Hà Nội","Nam Định",123456,VN,,,"Select Category"
+6,test5@gmail.com,0329051143,5b4d3ab390bdad91735603b9baafa03b,sss,sss,"Hà Nội","Nam Định",123456,VN,,,"Select Category"

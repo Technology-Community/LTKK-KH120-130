@@ -3,45 +3,6 @@ $fileProducts = fopen("data/products.csv", "r");
 $filePath = "data/products.csv";
 $fp = file("data/products.csv");
 $countCSV =  count($fp);
-// while(list($id,$name,$price,$time) = fgetcsv($fileProducts)){
-//     // print_r($time);
-//     if($id > 0){
-//         echo $id;
-//         echo $name;
-//         echo $price;
-//         echo strtotime($time) . ", ";
-//     }
-// }
-// $format = "%Y-%m-%d %H:%M:%SZ";
-// echo $strTime = strftime($format, mktime(2018,11,10,7,52,14));
-// echo  "<br />";
-// echo "Timestamp:" . strtotime($strTime);
-// function readCSV($file)
-// {
-//   $row      = 0;
-//   $csvArray = array();
-//   if( ( $handle = fopen($file, "r") ) !== FALSE ) {
-//     while( ( $data = fgetcsv($handle, 0, ";") ) !== FALSE ) {
-//       $num = count($data);
-//       for( $c = 0; $c < $num; $c++ ) {
-//         $csvArray[$row][] = $data[$c];
-//       }
-//       $row++;
-//     }
-//   }
-//   if( !empty( $csvArray ) ) {
-//     return array_splice($csvArray, 1); //cut off the first row (names of the fields)
-//   } else {
-//     return false;
-//   }
-// }
-
-// $csvData = readCSV($filePath);
-
-// var_dump($csvData);
-
-// $result = array_column(array_map('str_getcsv', file('data/products.csv')), 3, 0);
-// print_r($result);
 function csv_to_array($filename='', $delimiter=',')
 {
     if(!file_exists($filename) || !is_readable($filename))
@@ -63,22 +24,12 @@ function csv_to_array($filename='', $delimiter=',')
     return $data;
 }
 $csvData = csv_to_array($filePath);
-// print_r($csvData);
-// for($i=0;$i<10;$i++){
-//     echo strtotime($csvData[$i]['created_time']) . " , ";
-// }
 function date_compare($element1, $element2) {
     $datetime1 = strtotime($element1['created_time']);
     $datetime2 = strtotime($element2['created_time']);
     return $datetime1 - $datetime2;
 } 
-  
-// Sort the array 
 usort($csvData, 'date_compare');
-// Print the array
-// for($i = 0; $i < 10; $i ++){
-//     echo $csvData[$i]['name'];
-// }
 
 ?>
 <!DOCTYPE html>

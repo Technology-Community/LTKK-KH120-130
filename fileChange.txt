@@ -1,5 +1,20 @@
 - Add file data_user in folder data.
-- Edit file index.php
-- Edit file Login.php, Login.css
-- Edit file Registration.php
-- Add file CreatedTime.php, CreatedTime.css
+*PHP04
+    - Edit file login.php
+        + from line 1 to line 23
+        + line 132
+    -Edit file login.css
+        + line 210
+*PHP05
+    - Edit file Registration.php
+        + from line 1 to line 60
+        + line 177,197,499,521
+*PHP07
+    - Edit file index.php
+        + from line 1 to line 6
+        + Display store: line 185,186,187,191,194,195,196,197
+        + Display new product: line 206,207,208,209,213,216,217,218,219,229,221
+        + Display featured product: 166,167,168,172,175,176,177,178
+*PHP08
+    - Add file CreatedTime.js, CreatedTime.css
+

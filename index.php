@@ -4,8 +4,6 @@ $countCSV =  count($fp);
 $fileProducts = fopen("data/products.csv", "r");
 $fileStores = fopen("data/stores.csv", "r");
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en-VN">
 

@@ -128,36 +128,19 @@ $fileStores = fopen("data/stores.csv", "r");
                 <h1>featured stores</h1>
             </div>
             <div class="featured-stores">
-                <div class="store">
-                    <img class="brand" src="images/apple.png">
-                    <div class="overlay">
-                        <a href="Apple.php">Visit now!</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/leicester.jpg">
-                    <div class="overlay">
-                        <a href="Apple.php">Visit now!</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/balenciaga.jpg">
-                    <div class="overlay">
-                        <a href="Apple.php">Visit now!</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/NBA.jpg">
-                    <div class="overlay">
-                        <a href="Apple.php">Visit now!</a>
-                    </div>
-                </div>
-                <div class="store">
-                    <img class="brand" src="images/hublot.jpeg">
-                    <div class="overlay">
-                        <a href="Apple.php">Visit now!</a>
-                    </div>
-                </div>
+                <?php while (list($id, $name) = fgetcsv($fileStores, 1024, ',')) {
+                    if ($id < 6 && $id > 0) {
+                ?>
+                        <div class="store">
+                            <img class="brand" src="images/apple.png">
+                            <div class="overlay">
+                                <a href="Apple.php?storename=<?php echo $name ?>&id=<?php echo $id ?>"><?php echo $name ?></a>
+                            </div>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
             </div>
             <div class="featured">
                 <h1>featured products</h1>
@@ -202,7 +185,7 @@ $fileStores = fopen("data/stores.csv", "r");
                 <h1>new products</h1>
             </div>
             <div class="slide-container">
-                <div class="new-products" >
+                <div class="new-products">
                     <?php if (($handle = fopen("data/products.csv", "r")) !== FALSE) {
                         while ((list($id, $name) = fgetcsv($handle, 1000, ",")) !== FALSE) {
                             if ($id > ($countCSV - 6)) {

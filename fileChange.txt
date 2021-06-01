@@ -12,9 +12,15 @@
 *PHP07
     - Edit file index.php
         + from line 1 to line 6
-        + Display store: line 185,186,187,191,194,195,196,197
-        + Display new product: line 206,207,208,209,213,216,217,218,219,229,221
-        + Display featured product: 166,167,168,172,175,176,177,178
+        + Display store: line 131,132,133,137,140,141,142,143
+    - Edit file Apple.php
+        + from line 1 to line 8
+        + line 126,146
+    - Edit file Products.php
+        + from line 1 to 35
+        + line 51 
+        + Display featured products: line 160,161,162,163,167,170,171,172,173,174,175
+        + Display new products(created-time): line 182,183,184, 188, 189, 192, 193, 194, 195 
 *PHP08
     - Add file CreatedTime.js, CreatedTime.css
 

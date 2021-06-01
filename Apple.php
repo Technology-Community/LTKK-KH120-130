@@ -1,3 +1,11 @@
+<?php
+    if(isset($_GET['storename'])){
+        $storename = $_GET['storename'];
+    }
+    if(isset($_GET['id'])){
+        $idStore = $_GET['id'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en-VN">
     <head>
@@ -115,7 +123,7 @@
                 </div>
                 <div class="description">
                     <div class="title">
-                        <h1>APPLE</h1>
+                        <h1><?php echo $storename?></h1>
                         <p class="type">Electronics</p>
                         <p class="des">Apple Infinis Mall is the first Apple Store in Vietnam, this entire store is not only for selling typical products, but it is also designated to promoting Vietnamese culture and incoproorating the uniqueness of the Vietnamese people into the particular design of the store.</p>
                         <p class="des" id="secondline">Once inside, visitors can get hands on and explore curated Apple products and accessories. Our Specialists will answer your questions and get you set up before you leave or see a Genius and get technical support.</p>
@@ -135,7 +143,7 @@
                     </div><!--Store Info-->
                 </div><!--Description-->
                 <div class="view">
-                    <a href="Products.php"><button class="button"><strong>VIEW PRODUCTS</strong></button></a>
+                    <a href="Products.php?idstore=<?php echo $idStore?>"><button class="button"><strong>VIEW PRODUCTS</strong></button></a>
                 </div>
             </div>
             <footer>

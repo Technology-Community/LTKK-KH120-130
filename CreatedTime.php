@@ -24,6 +24,7 @@ function csv_to_array($filename='', $delimiter=',')
     return $data;
 }
 $csvData = csv_to_array($filePath);
+// print_r($csvData);
 function date_compare($element1, $element2) {
     $datetime1 = strtotime($element1['created_time']);
     $datetime2 = strtotime($element2['created_time']);

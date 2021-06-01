@@ -165,17 +165,20 @@ $fileStores = fopen("data/stores.csv", "r");
             </div>
             <div class="slide-container">
                 <div class="new-stores" id="slider1">
-                    <?php while (list($id, $name) = fgetcsv($fileStores, 1024, ',')) {
-                        if ($id < 15 && $id > 0) {
+                    <?php if (($handle = fopen("data/stores.csv", "r")) !== FALSE) {
+                        while ((list($id, $name) = fgetcsv($handle, 1024, ',')) !== FALSE) {
+                            if ($id < 15 && $id > 0) {
                     ?>
-                            <div class="slide-store1">
-                                <img class="brand" src="images/microsoft.jpg">
-                                <div class="overlay">
-                                    <a href="Apple.php"><?php echo $name ?></a>
+                                <div class="slide-store1">
+                                    <img class="brand" src="images/microsoft.jpg">
+                                    <div class="overlay">
+                                        <a href="Apple.php"><?php echo $name ?></a>
+                                    </div>
                                 </div>
-                            </div>
                     <?php
+                            }
                         }
+                        fclose($handle);
                     }
                     ?>
                     <div class="placeholder">Text</div>
